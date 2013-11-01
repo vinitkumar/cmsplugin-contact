@@ -4,9 +4,11 @@ from django.utils.translation import ugettext_lazy as _
 from cmsplugin_contact.nospam.forms import HoneyPotForm, RecaptchaForm, AkismetForm
   
 class ContactForm(forms.Form):
-    email = forms.EmailField(label=_("Email"))
-    subject = forms.CharField(label=_("Subject"), required=False)
-    content = forms.CharField(label=_("Content"), widget=forms.Textarea())
+    name = forms.CharField(label=_("Name"), widget=forms.TextInput(attrs={'placeholder': 'Your name*'}))
+    email = forms.EmailField(label=_("Email"), widget=forms.TextInput(attrs={'placeholder': 'Your email address*'}))
+    phone = forms.CharField(label=_("Phone"), widget=forms.TextInput(attrs={'placeholder': 'Phone number'})) 
+    question = forms.CharField(label=_("Question"), widget=forms.Textarea(attrs={'placeholder': 'Question*'}))
+
 
     template = "cmsplugin_contact/contact.html"
   
